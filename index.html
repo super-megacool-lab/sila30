@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101114">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="СИЛА 30">
+<meta name="description" content="Твой домашний план тренировок на 30 дней">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>СИЛА 30</title>
+<style>
+:root{--bg:#101114;--panel:#1a1c21;--panel2:#22252b;--text:#f5f6f8;--muted:#a3a7b0;--lime:#c8ff46;--line:#30343c;--red:#ff6b6b;--radius:20px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 0 calc(86px + env(safe-area-inset-bottom));}
+button,input{font:inherit}button{cursor:pointer} .app{max-width:620px;margin:auto;padding:18px 16px 20px}
+header{display:flex;align-items:center;justify-content:space-between;margin:8px 0 20px}.brand{font-size:22px;font-weight:900;letter-spacing:1px}.brand span{color:var(--lime)}.date{font-size:12px;color:var(--muted);margin-top:4px}.avatar{width:42px;height:42px;border-radius:14px;background:var(--lime);color:#111;display:grid;place-items:center;font-size:20px;font-weight:900}
+h1{font-size:29px;line-height:1.1;margin:0 0 8px;letter-spacing:-.7px}h2{font-size:19px;margin:0 0 14px}h3{font-size:16px;margin:0 0 6px}.muted{color:var(--muted)}.small{font-size:12px}.hero{background:linear-gradient(135deg,#252a20,#1a1c21 70%);border:1px solid #3b4430;border-radius:26px;padding:22px;margin-bottom:16px;position:relative;overflow:hidden}.hero:after{content:"30";position:absolute;right:4px;top:-25px;font-size:115px;font-weight:900;color:#ffffff08;pointer-events:none}.tag{display:inline-flex;background:#354220;color:var(--lime);padding:7px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.5px;margin-bottom:14px}.hero p{color:#c4c8bf;font-size:14px;line-height:1.5;margin:0 0 18px;max-width:330px}
+.btn{border:0;border-radius:14px;padding:14px 16px;font-weight:800;background:var(--lime);color:#111;width:100%;}.btn.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}.btn.danger{background:#3b2224;color:#ffb4b4}.btn:disabled{opacity:.45;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:18px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:15px}.stat .num{font-size:27px;font-weight:900;margin:6px 0}.stat .label{font-size:12px;color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:17px;margin-bottom:13px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.progress{height:7px;background:#343740;border-radius:99px;overflow:hidden;margin:12px 0}.progress>div{height:100%;background:var(--lime);border-radius:99px;width:0;transition:width .25s}
+.tabs{position:fixed;z-index:5;bottom:0;left:0;right:0;padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:#141519ed;backdrop-filter:blur(18px);border-top:1px solid var(--line);display:flex;justify-content:center}.tabwrap{width:100%;max-width:620px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.tab{background:transparent;border:0;color:var(--muted);border-radius:13px;padding:8px 3px;font-size:10px;display:flex;align-items:center;flex-direction:column;gap:5px}.tab .ico{font-size:19px}.tab.active{color:var(--lime);background:#2a3020}
+.screen{display:none}.screen.active{display:block}
+.exercise{padding:14px 0;border-bottom:1px solid var(--line)}.exercise:last-child{border-bottom:0}.exercise p{font-size:12px;color:var(--muted);margin:5px 0 0;line-height:1.45}.chip{background:var(--panel2);padding:7px 10px;border-radius:10px;font-size:12px;white-space:nowrap}.timer{font-size:52px;font-weight:900;text-align:center;letter-spacing:-1px;margin:16px 0;color:var(--lime);font-variant-numeric:tabular-nums}.timerbuttons{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.checkrow{display:flex;align-items:center;gap:11px;padding:12px 0;border-bottom:1px solid var(--line)}.checkrow input{accent-color:var(--lime);width:20px;height:20px}.checkrow .daytext{flex:1}.checkrow.done .daytext{text-decoration:line-through;color:var(--muted)}
+.field{width:100%;background:#111317;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px;margin-top:7px}.field:focus{outline:1px solid var(--lime)}.formrow{margin:14px 0}.formrow label{font-size:12px;color:var(--muted)}
+.pill{font-size:11px;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 8px}.note{font-size:12px;line-height:1.5;color:var(--muted)}.empty{text-align:center;padding:25px 10px;color:var(--muted)}
+@media(min-width:540px){.app{padding-top:26px}.hero{padding:28px}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div><div class="brand">СИЛА <span>30</span></div><div class="date" id="todayDate"></div></div><div class="avatar">С</div></header>
+
+<section class="screen active" id="home">
+  <div class="hero">
+    <div class="tag">ТВОЙ ПЛАН · 30 ДНЕЙ</div>
+    <h1 id="homeGreeting">Становись сильнее.</h1>
+    <p id="homeSub">Тренировки дома. Маленькие шаги, стабильный прогресс.</p>
+    <button class="btn" onclick="startWorkout()">Начать тренировку →</button>
+  </div>
+  <div class="grid">
+    <div class="stat"><div class="label">Дней отмечено</div><div class="num" id="statDays">0/30</div><div class="progress"><div id="dayBar"></div></div></div>
+    <div class="stat"><div class="label">Максимум отжиманий</div><div class="num" id="statPush">3–5</div><div class="label">Стартовый уровень</div></div>
+  </div>
+  <div class="card">
+    <div class="row"><h2 style="margin:0">Сегодня</h2><span class="pill" id="todayType">План</span></div>
+    <div style="height:12px"></div><h3 id="todayTitle">Тренировка A</h3><p class="muted" id="todayDescription" style="font-size:13px;line-height:1.5"></p>
+    <div style="height:14px"></div><button class="btn secondary" onclick="showTab('plan')">Открыть календарь</button>
+  </div>
+  <div class="card"><div class="row"><h2 style="margin:0">Цель месяца</h2><span style="font-size:23px">🎯</span></div><p class="muted" style="font-size:13px;line-height:1.5">Больше качественных повторений, крепче всё тело и постепенное снижение веса. Не гонись за цифрами в ущерб технике.</p></div>
+</section>
+
+<section class="screen" id="workout">
+  <div class="row" style="margin:5px 0 18px"><div><div class="muted small">СИЛОВАЯ СЕССИЯ</div><h1 id="workoutName" style="margin-top:5px">Тренировка A</h1></div><span class="pill" id="workoutCounter">0/4</span></div>
+  <div class="card"><div class="row"><h2 style="margin:0">Упражнения</h2><span class="pill">Сегодня</span></div><div id="exerciseList"></div><div style="height:12px"></div><button class="btn" id="finishWorkout" onclick="finishSession()">Завершить тренировку ✓</button></div>
+  <div class="card">
+    <div class="row"><h2 style="margin:0">Таймер отдыха</h2><span class="pill">секунды</span></div>
+    <div class="timer" id="timerDisplay">01:30</div>
+    <div class="timerbuttons"><button class="btn" onclick="startTimer()">Старт</button><button class="btn secondary" onclick="pauseTimer()">Пауза</button></div>
+    <div style="height:9px"></div><div class="timerbuttons"><button class="btn ghost" onclick="setTimer(60)">60 сек</button><button class="btn ghost" onclick="setTimer(120)">120 сек</button></div>
+  </div>
+  <p class="note">Если заданное количество не получается, уменьши повторы или делай отжимания с колен. Оставляй примерно одно повторение в запасе.</p>
+</section>
+
+<section class="screen" id="plan">
+  <h1>Календарь</h1><p class="muted" style="margin:8px 0 18px;font-size:13px">30 дней. Отмечай прогулки, отдых и тренировки.</p>
+  <div class="card"><div class="row"><h2 style="margin:0">Прогресс</h2><b id="planCount">0/30</b></div><div class="progress"><div id="planBar"></div></div><div id="calendarList"></div></div>
+</section>
+
+<section class="screen" id="progress">
+  <h1>Мой прогресс</h1><p class="muted" style="margin:8px 0 18px;font-size:13px">Записывай результаты — так увидишь изменения.</p>
+  <div class="grid">
+    <div class="stat"><div class="label">Занятий выполнено</div><div class="num" id="progressSessions">0</div></div>
+    <div class="stat"><div class="label">Последний вес</div><div class="num" id="lastWeight">—</div><div class="label">кг</div></div>
+  </div>
+  <div class="card">
+    <h2>Добавить результат</h2>
+    <div class="formrow"><label for="maxPush">Максимум отжиманий подряд</label><input class="field" id="maxPush" type="number" min="0" max="200" placeholder="Например, 5"></div>
+    <div class="formrow"><label for="weight">Вес, кг (необязательно)</label><input class="field" id="weight" type="number" min="30" max="300" step="0.1" placeholder="Например, 94.5"></div>
+    <div class="formrow"><label for="walk">Ходьба сегодня, минут</label><input class="field" id="walk" type="number" min="0" max="500" placeholder="Например, 25"></div>
+    <button class="btn" onclick="saveLog()">Сохранить результат</button>
+  </div>
+  <div class="card"><h2>История</h2><div id="history"></div></div>
+  <div class="card"><h2>Данные приложения</h2><p class="note">Результаты сохраняются в хранилище этого браузера на телефоне. Очистка данных Safari или открытие приложения в другом браузере может убрать или не показать эти записи.</p><button class="btn secondary" onclick="exportData()">Экспортировать мои данные</button></div>
+</section>
+</div>
+
+<nav class="tabs">
+ <div class="tabwrap">
+  <button class="tab active" data-tab="home" onclick="showTab('home')"><span class="ico">⌂</span>Главная</button>
+  <button class="tab" data-tab="workout" onclick="showTab('workout')"><span class="ico">⚡</span>Тренировка</button>
+  <button class="tab" data-tab="plan" onclick="showTab('plan')"><span class="ico">▦</span>План</button>
+  <button class="tab" data-tab="progress" onclick="showTab('progress')"><span class="ico">↗</span>Прогресс</button>
+ </div>
+</nav>
+<script>
+const START = new Date(2026,9,19);
+const DAYS = 30;
+const names = ["19 окт","20 окт","21 окт","22 окт","23 окт","24 окт","25 окт","26 окт","27 окт","28 окт","29 окт","30 окт","31 окт","1 ноя","2 ноя","3 ноя","4 ноя","5 ноя","6 ноя","7 ноя","8 ноя","9 ноя","10 ноя","11 ноя","12 ноя","13 ноя","14 ноя","15 ноя","16 ноя","17 ноя"];
+const dayTypes = ["A","Ходьба","B","Ходьба","C","Ходьба","Отдых","A","Ходьба","B","Ходьба","C","Ходьба","Отдых","A","Ходьба","B","Ходьба","C","Ходьба","Отдых","A","Ходьба","B","Ходьба","C","Ходьба","Отдых","Лёгкая","Проверка"];
+const descriptions = {
+ A:"Отжимания 5 подходов по плану · приседания 3×10–15 · ягодичный мост 3×12–15 · планка 3×15–25 сек.",
+ B:"Отжимания 4 подхода по плану · выпады назад 2–3×6–8 на ногу · bird-dog 3×8 на сторону · dead bug 2×8 на сторону.",
+ C:"Отжимания 5 подходов по плану · приседания 3×12–15 · ягодичный мост 3×15 · подъём рук и ног лёжа на животе 2×8–12."
+};
+function getState(){try{return JSON.parse(localStorage.getItem("sila30data"))||{checked:[],logs:[],sessions:0,maxPush:"3–5"};}catch(e){return {checked:[],logs:[],sessions:0,maxPush:"3–5"};}}
+let state=getState(), timerRemaining=90, timerInterval=null, currentWorkoutIndex=0, sessionChecks=[];
+function saveState(){localStorage.setItem("sila30data",JSON.stringify(state));}
+function fmtDate(d){return d.toLocaleDateString("ru-RU",{day:"numeric",month:"long",year:"numeric"});}
+function dayIndex(){const now=new Date();const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());return Math.max(0,Math.min(29,Math.floor((today-START)/86400000)));}
+function workoutPlan(i){if(i===28)return "3×2 легко";if(i===29)return "Проверка: один подход";if(i<7)return i%7===2?"4×2":"5×2";if(i<14)return i%7===2?"4×2–3":"5×2–3";if(i<21)return i%7===2?"4×3":"5×3";return i%7===2?"4×3–4":"5×3–4";}
+function actualIndex(){const now=new Date();return Math.floor((new Date(now.getFullYear(),now.getMonth(),now.getDate())-START)/86400000);}
+function currentPlan(){let i=actualIndex();if(i<0)return 0;if(i>29)return 29;return i;}
+function renderHome(){
+ const i=currentPlan(), t=dayTypes[i], d=new Date(START);d.setDate(d.getDate()+i);
+ document.getElementById("todayDate").textContent=fmtDate(new Date());
+ document.getElementById("statDays").textContent=`${state.checked.length}/30`;
+ document.getElementById("dayBar").style.width=`${state.checked.length/30*100}%`;
+ document.getElementById("statPush").textContent=state.maxPush;
+ document.getElementById("todayType").textContent=t==="Ходьба"||t==="Отдых"?"Восстановление":"Силовая";
+ document.getElementById("todayTitle").textContent=t==="A"?"Тренировка A":t==="B"?"Тренировка B":t==="C"?"Тренировка C":t;
+ document.getElementById("todayDescription").textContent=descriptions[t]|| (t==="Ходьба"?"Прогулка 20–30 минут, постепенно увеличивай до 30–40 минут.":t==="Отдых"?"Восстановление. По желанию — лёгкая прогулка.":t==="Лёгкая"?"3×2 лёгких отжимания; приседания 2×10; ягодичный мост 2×12.":"После разминки проверь максимум качественных повторений, не продолжай с нарушенной техникой.");
+}
+function showTab(tab){
+ document.querySelectorAll(".screen").forEach(x=>x.classList.toggle("active",x.id===tab));
+ document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===tab));
+ if(tab==="plan")renderCalendar();if(tab==="progress")renderProgress();if(tab==="home")renderHome();
+}
+function renderCalendar(){
+ const list=document.getElementById("calendarList");list.innerHTML="";
+ names.forEach((name,i)=>{
+  const row=document.createElement("label");row.className="checkrow"+(state.checked.includes(i)?" done":"");
+  const cb=document.createElement("input");cb.type="checkbox";cb.checked=state.checked.includes(i);cb.onchange=()=>{state.checked=cb.checked?[...new Set([...state.checked,i])]:state.checked.filter(x=>x!==i);saveState();renderCalendar();renderHome();renderProgress();};
+  const text=document.createElement("div");text.className="daytext";text.innerHTML=`<strong>${name}</strong><div class="small muted">${dayTypes[i]}${["A","B","C"].includes(dayTypes[i])?" · "+workoutPlan(i):""}</div>`;
+  row.append(cb,text);list.append(row);
+ });
+ document.getElementById("planCount").textContent=`${state.checked.length}/30`;
+ document.getElementById("planBar").style.width=`${state.checked.length/30*100}%`;
+}
+function startWorkout(){
+ const i=currentPlan(), t=dayTypes[i];currentWorkoutIndex=i;sessionChecks=[];
+ document.getElementById("workoutName").textContent=t==="A"?"Тренировка A":t==="B"?"Тренировка B":t==="C"?"Тренировка C":t;
+ const list=document.getElementById("exerciseList");list.innerHTML="";
+ let ex=[];
+ if(t==="A")ex=[["Отжимания",workoutPlan(i),"Грудь, плечи и трицепсы"],["Приседания","3×10–15","Ноги"],["Ягодичный мост","3×12–15","Ягодицы"],["Планка","3×15–25 сек","Корпус"]];
+ else if(t==="B")ex=[["Отжимания",workoutPlan(i),"Грудь, плечи и трицепсы"],["Выпады назад","2–3×6–8 на ногу","Ноги"],["Bird-dog","3×8 на сторону","Стабилизация корпуса"],["Dead bug","2×8 на сторону","Мышцы живота"]];
+ else if(t==="C")ex=[["Отжимания",workoutPlan(i),"Грудь, плечи и трицепсы"],["Приседания","3×12–15","Ноги"],["Ягодичный мост","3×15","Ягодицы"],["Подъём рук/ног лёжа на животе","2×8–12","Спина"]];
+ else if(t==="Лёгкая")ex=[["Отжимания","3×2 легко","Не утомляйся"],["Приседания","2×10","Ноги"],["Ягодичный мост","2×12","Ягодицы"]];
+ else if(t==="Проверка")ex=[["Разминка","5 минут","Подготовь плечи и запястья"],["Отжимания","1 подход","Остановись до потери техники"]];
+ else ex=[["Сегодня нет силовой тренировки","—","Прогулка 20–30 минут и восстановление"]];
+ ex.forEach((e,idx)=>{const div=document.createElement("div");div.className="exercise";div.innerHTML=`<div class="row"><div><h3>${e[0]}</h3><p>${e[2]}</p></div><span class="chip">${e[1]}</span></div>`;list.append(div);});
+ document.getElementById("workoutCounter").textContent=`${ex.length} упражн.`;
+ showTab("workout");
+}
+function finishSession(){
+ const i=currentWorkoutIndex;
+ if(!state.checked.includes(i))state.checked.push(i);
+ state.sessions=(state.sessions||0)+1;
+ saveState();renderHome();renderProgress();renderCalendar();
+ document.getElementById("finishWorkout").textContent="Тренировка отмечена ✓";
+ document.getElementById("finishWorkout").disabled=true;
+ setTimeout(()=>{document.getElementById("finishWorkout").textContent="Завершить тренировку ✓";document.getElementById("finishWorkout").disabled=false;},1800);
+}
+function setTimer(sec){pauseTimer();timerRemaining=sec;renderTimer();}
+function renderTimer(){const m=String(Math.floor(timerRemaining/60)).padStart(2,"0"),s=String(timerRemaining%60).padStart(2,"0");document.getElementById("timerDisplay").textContent=`${m}:${s}`;}
+function startTimer(){if(timerInterval)return;timerInterval=setInterval(()=>{timerRemaining--;renderTimer();if(timerRemaining<=0){pauseTimer();if("vibrate"in navigator)navigator.vibrate([250,100,250]);alert("Отдых закончен! Следующий подход 💪");timerRemaining=90;renderTimer();}},1000);}
+function pauseTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;}}
+function saveLog(){
+ const max=document.getElementById("maxPush").value,weight=document.getElementById("weight").value,walk=document.getElementById("walk").value;
+ const entry={date:fmtDate(new Date()),max:max===""?null:Number(max),weight:weight===""?null:Number(weight),walk:walk===""?null:Number(walk)};
+ if(entry.max!==null){state.maxPush=String(entry.max); }
+ if(entry.max===null&&entry.weight===null&&entry.walk===null){alert("Введи хотя бы один результат.");return;}
+ state.logs.unshift(entry);saveState();renderProgress();renderHome();
+ document.getElementById("maxPush").value="";document.getElementById("weight").value="";document.getElementById("walk").value="";
+ alert("Результат сохранён!");
+}
+function renderProgress(){
+ document.getElementById("progressSessions").textContent=state.sessions||0;
+ const w=state.logs.find(x=>x.weight!==null);document.getElementById("lastWeight").textContent=w?w.weight:"—";
+ const h=document.getElementById("history");h.innerHTML="";
+ if(!state.logs.length){h.innerHTML='<div class="empty">Пока записей нет. Добавь первый результат после тренировки.</div>';return;}
+ state.logs.forEach(x=>{const div=document.createElement("div");div.className="checkrow";div.innerHTML=`<div class="daytext"><strong>${x.date}</strong><div class="small muted">${x.max!==null?"Отжимания: "+x.max+" · ":""}${x.weight!==null?"Вес: "+x.weight+" кг · ":""}${x.walk!==null?"Ходьба: "+x.walk+" мин":""}</div></div>`;h.append(div);});
+}
+function exportData(){
+ const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="sila30-progress.json";a.click();URL.revokeObjectURL(url);
+}
+if("serviceWorker"in navigator && location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+renderHome();renderCalendar();renderProgress();renderTimer();
+</script>
+</body>
+</html>
